@@ -53,7 +53,7 @@ AUTH:
   *$dovecot_auth_pam*  [OR]     tells dovecot to use pam for user auth (boolean)
   *$dovecot_autoh_database*     tells dovecot to use either mysql or postgresl backend (string)
 
-  IF you decide to use ldap, you can provide those informations:
+  IF you decide to use ldap, you can provide this information:
     *$slapd_domain*                  ldap domain (mandatory, string)
     *$slapd_allow_v2*                do you want to use ldap v2 proto? (optionnal, boolean)
     *$dovecot_ldap_uri*              LDAP access uri (optional, string)
@@ -63,8 +63,10 @@ AUTH:
     *$dovecot_ldap_base*             base DN of your ldap (optional, string)
     *$dovecot_ldap_user_attrs*       user attributes in ldap (optional, string)
     *$dovecot_ldap_pass_attrs*       password attribute in ldap (optional, string)
+    *$dovecot_ldap_user_filter*      user filter
+    *$dovecot_ldap_pass_filter*      pass filter
 
-  IF you decide to use a database, you cant provide thos informations:
+  IF you decide to use a database, you can provide this information:
     *$dovecot_sql_host*              database host (mandatory, string)
     *$dovecot_sql_dbname*            database name (mandatory, string)
     *$dovecot_sql_user*              database username (mandatory, string)

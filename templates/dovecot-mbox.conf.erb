@@ -1,16 +1,16 @@
 # File managed by puppet
 ## MAILBOX CONFIG
-<% if has_variable?('dovecot_mail_location') -%>
-mail_location = <%= dovecot_mail_location %>
+<% if scope.lookupvar('dovecot::params::dovecot_mail_location') -%>
+mail_location = <%= scope.lookupvar('dovecot::params::dovecot_mail_location') %>
 <% end -%>
-<% if has_variable?('dovecot_mail_gid') -%>
-mail_gid = <%= dovecot_mail_gid %>
+<% if scope.lookupvar('dovecot::params::dovecot_mail_gid') -%>
+mail_gid = <%= scope.lookupvar('dovecot::params::dovecot_mail_gid') %>
 <% end -%>
-<% if has_variable?('dovecot_mail_uid') -%>
-mail_uid = <%= dovecot_mail_uid %>
+<% if scope.lookupvar('dovecot::params::dovecot_mail_uid') -%>
+mail_uid = <%= scope.lookupvar('dovecot::params::dovecot_mail_uid') %>
 <% end -%>
-<% if has_variable?('dovecot_mail_privileged_group') -%>
-mail_privileged_group = <%= dovecot_mail_privileged_group %>
+<% if scope.lookupvar('dovecot::params::dovecot_mail_privileged_group') -%>
+mail_privileged_group = <%= scope.lookupvar('dovecot::params::dovecot_mail_privileged_group') %>
 <% else -%>
 mail_privileged_group = mail
 <% end -%>

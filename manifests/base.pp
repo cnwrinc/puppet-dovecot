@@ -3,16 +3,16 @@
 # Please do not include this class as is, it won't work!
 #
 class dovecot::base {
-  if ($dovecot_auth_ldap and $dovecot_auth_pam and $dovecot_auth_database) {
-    fail 'Please provide either $dovecot_auth_ldap OR $dovecot_auth_pam OR $dovecot_auth_database'
+  if ($dovecot::params::dovecot_auth_ldap and $dovecot::params::dovecot_auth_pam and $dovecot::params::dovecot_auth_database) {
+    fail 'Please provide either $dovecot::params::dovecot_auth_ldap OR $dovecot::params::dovecot_auth_pam OR $dovecot::params::dovecot_auth_database'
   }
 
-  if !( $dovecot_auth_ldap or $dovecot_auth_pam or $dovecot_auth_database) {
-    fail 'Please provide either $dovecot_auth_ldap or $dovecot_auth_pam or $dovecot_auth_database'
+  if !( $dovecot::params::dovecot_auth_ldap or $dovecot::params::dovecot_auth_pam or $dovecot::params::dovecot_auth_database) {
+    fail 'Please provide either $dovecot::params::dovecot_auth_ldap or $dovecot::params::dovecot_auth_pam or $dovecot::params::dovecot_auth_database'
   }
 
-  if ($dovecot_auth_ldap and ! ($dovecot_ldap_host or $dovecot_ldap_uri )) {
-    fail 'Please provide either $dovecot_ldap_host or $dovecot_ldap_uri'
+  if ($dovecot::params::dovecot_auth_ldap and ! ($dovecot::params::dovecot_ldap_host or $dovecot::params::dovecot_ldap_uri )) {
+    fail 'Please provide either $dovecot::params::dovecot_ldap_host or $dovecot::params::dovecot_ldap_uri'
   }
 
   include concat::setup
@@ -129,7 +129,7 @@ class dovecot::base {
     content => template('dovecot/dovecot-mbox.conf.erb'),
   }
 
-  if $dovecot_ssl_enabled {
+  if $dovecot::params::dovecot_ssl_enabled {
     dovecot::configuration {'ssl':
       ensure  => present,
       content => template('dovecot/dovecot-ssl.conf.erb'),
@@ -146,7 +146,7 @@ class dovecot::base {
     content => template('dovecot/dovecot-proto-pop3.conf.erb'),
   }
 
-  if $dovecot_auth_pam {
+  if $dovecot::params::dovecot_auth_pam {
     file {'/etc/dovecot/conf.d/auth-pam.ext':
       ensure  => present,
       owner   => root,
@@ -158,7 +158,7 @@ class dovecot::base {
     }
   }
 
-  if $dovecot_auth_ldap {
+  if $dovecot::params::dovecot_auth_ldap {
     file {'/etc/dovecot/conf.d/auth-ldap.ext':
       ensure  => present,
       owner   => root,
@@ -178,7 +178,7 @@ class dovecot::base {
     }
   }
 
-  if $dovecot_auth_database {
+  if $dovecot::params::dovecot_auth_database {
     file {'/etc/dovecot/conf.d/auth-database.ext':
       ensure  => present,
       owner   => root,

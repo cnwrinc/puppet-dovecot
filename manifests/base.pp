@@ -58,7 +58,7 @@ class dovecot::base {
 
   exec {'reload dovecot':
     command     => '/etc/init.d/dovecot reload',
-    onlyif      => 'dovecot -n &>/dev/null',
+    onlyif      => "${dovecot_bin} -n &>/dev/null",
     refreshonly => true,
   }
 

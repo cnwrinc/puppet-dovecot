@@ -8,4 +8,5 @@ Please do not include this class, it's better to "include dovecot".
 */
 
 class dovecot::redhat inherits dovecot::base {
+  $dovecot_bin = '/usr/sbin/dovecot'
 }

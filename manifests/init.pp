@@ -79,6 +79,8 @@ AUTH:
 */
 class dovecot
 {
+  include dovecot::params
+
   case $::osfamily {
     'Debian' : { include dovecot::debian }
     'RedHat' : { include dovecot::redhat }

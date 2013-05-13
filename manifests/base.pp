@@ -40,16 +40,6 @@ class dovecot::base {
     require => [ User['dovecot'], Group['dovecot'] ],
   }
 
-  package {'Dovecot IMAP':
-    ensure  => present,
-    require => [ User['dovecot'], Group['dovecot'] ],
-  }
-
-  package {'Dovecot POP3':
-    ensure  => present,
-    require => [ User['dovecot'], Group['dovecot'] ],
-  }
-
   service {'dovecot':
     ensure  => running,
     enable  => true,
@@ -58,7 +48,8 @@ class dovecot::base {
 
   exec {'reload dovecot':
     command     => '/etc/init.d/dovecot reload',
-    onlyif      => "${dovecot_bin} -n &>/dev/null",
+    onlyif      => 'dovecot -n &>/dev/null',
+    path        => '/sbin:/usr/sbin:/usr/local/sbin',
     refreshonly => true,
   }
 

@@ -13,11 +13,15 @@ class dovecot::debian inherits dovecot::base {
     name => 'dovecot-common',
   }
 
-  Package['Dovecot IMAP'] {
+  package {'Dovecot IMAP':
+    ensure  => present,
+    require => [ User['dovecot'], Group['dovecot'] ],
     name => 'dovecot-imapd',
   }
 
-  Package['Dovecot POP3'] {
+  package {'Dovecot POP3':
+    ensure  => present,
+    require => [ User['dovecot'], Group['dovecot'] ],
     name => 'dovecot-pop3d',
   }
 

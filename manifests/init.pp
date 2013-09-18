@@ -77,9 +77,8 @@ AUTH:
   IF you decide to use pam, you have nothing else to do.
 
 */
-class dovecot
+class dovecot inherits dovecot::params
 {
-  include dovecot::params
 
   case $::osfamily {
     'Debian' : { include dovecot::debian }
